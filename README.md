@@ -14,24 +14,30 @@ Online documentation for some QtQuickVcp classes can be found here [QtQuickVcp D
 
 **<a href="#getting_started">Getting Started</a>**
 
-* Testing Mkwrapper
+* <a href="#testing_mkwrapper">Testing Mkwrapper</a>
 * Bla
 
 **<a href="#contributing">Contributing</a>**
 
 **<a href="#build_and_install">Building and Installing</a>**
+* <a href="#easy_way">Easy Way using Vagrant</a>
+* <a href="#build_and_install_steps">Build and Install Steps</a>
+* <a href="#windows">Windows</a>, <a href="#mac">OS X and iOS</a>, <a href="#linux">Linux</a> or <a href="#android">Android</a>.
+* <a href="#build_qtquickvcp">Build QtQuickVcp</a>
 
 <a name="qtquickvcp" />
 ## What is QtQuickVcp?
 
 QtQuickVcp is a Machinekit component which adds the ability create new
 user interfaces for Machinekit. Unlike
-[GladeVCP](http://www.linuxcnc.org/docs/2.5/html/gui/gladevcp.html)
-all user interface functionality can be implemented in QML only.
+[GladeVCP](http://www.linuxcnc.org/docs/2.5/html/gui/gladevcp.html),
+every interface functionality can be implemented in
+[QML](http://doc.qt.io/qt-5/qtqml-index.html) only.
 
-QtQuickVcp is designed with the aspect of remote interfaces on mobile devices and embedded systems
-in mind. A UI is designed once for a specific form factor and can then be deployed to any mobile, embedded
-or desktop device over the network.
+QtQuickVcp is designed with the aspect of remote interfaces on mobile
+devices and embedded systems in mind. A UI is designed once for a
+specific form factor and can then be deployed to any portable,
+embedded or desktop device over the network.
 
 <a name="getting_started" />
 ## Getting Started
@@ -42,13 +48,13 @@ Please take a look at "Hello World in QtQuickVcp" tutorial on YouTube.
 More detailed videos for specific areas will follow.
 
 ### QtQuick modules
-* *Machinekit.HalRemote* - Non GUI HAL remote pins and components
-* *Machinekit.HalRemote.Controls* - GUI items such as Slider and ProgressBar combined with HAL pins
-* *Machinekit.Application* - Non GUI CNC stack application components
-* *Machinekit.Application.Controls* - GUI items for CNC type applications
-* *Machinekit.Controls* - Generic UI items not combined with HAL pins (can be used for non HAL projects)
-* *Machinekit.PathView* - GCode path and progress views
-* *Machinekit.VideoView* - Video views, e.g. for mjpeg-webcam streams
+* **Machinekit.HalRemote** - Non GUI HAL remote pins and components
+* **Machinekit.HalRemote.Controls** - GUI items such as Slider and ProgressBar combined with HAL pins
+* **Machinekit.Application** - Non GUI CNC stack application components
+* **Machinekit.Application.Controls** - GUI items for CNC type applications
+* **Machinekit.Controls** - Generic UI items not combined with HAL pins (can be used for non HAL projects)
+* **Machinekit.PathView** - GCode path and progress views
+* **Machinekit.VideoView** - Video views, e.g. for mjpeg-webcam streams
 
 ### Testing mkwrapper
 #### Install or Update Machinekit
@@ -203,32 +209,42 @@ If you have a embedded Machinekit setup e.g. on the BeagleBone Black, it is reco
 
 <a name="build_and_install"/>
 ## Building and installing
-QtQuickVcp is very versatile and is available for following platforms:
+This section leads you through building and installing the QtQuickVcp project. QtQuickVcp is very versatile and is available for following platforms:
 
-* Windows Vista or newer
-* OS X Mavericks or newer
-* Linux (tested on Debian Jessie)
-* Android 4.x or newer
-* iOS (no binaries yet)
+* <a href="#windows">Windows</a> Vista or newer
+* <a href="#mac">OS X</a> Mavericks or newer
+* <a href="#linux">Linux</a> (tested on Debian Jessie)
+* <a href="#android">Android</a> 4.x or newer
+* <a href="#mac">iOS</a> (no binaries yet)
 
-Please note that intalling QtQuickVcp can be very cumbersome for most
-platforms. However, since QtQuickVcp use **remote deployment** of it
-is not necessary that you build QtQuickVcp e.g. for Android. Instead
+Please note that installing QtQuickVcp can be very cumbersome for most
+platforms. However, since QtQuickVcp uses **remote deployment**, it
+is not necessary that you build QtQuickVcp, e.g. for Android. Instead
 please **take the easy way** and use the
 [Machinekit Vagrant box](https://github.com/strahlex/machinekit-vagrant)
 for development. The
 [Machinekit-Client](https://github.com/strahlex/MachinekitClient) serves
 as universal client application. You can download binaries for all
 supported platforms. Please only try to build and install QtQuickVcp
-on you own if you feel confident to do so and if you plan to
+on your own if you feel confident to do so, and if you plan to
 contribute to the QtQuickVcp project.
 
-### Easy Way - Vagrant
+<a name="easy_way"/>
+### Easy Way using Vagrant
 The easiest way to get a running MachinekitSDK, QtQuickVcp and Machinekit installation is to use
 the [Vagrant configuration](https://github.com/strahlex/machinekit-vagrant). Follow the steps provided
 in the repository and you will have a working installation with a few clicks.
 
-### Generic Requirements
+<a name="build_and_install_steps"/>
+### Build and Install Steps
+Building and installing QtQuickVcp involves 2 steps:
+
+* Install the prerequisites using the platform specific guides for</br>
+   <a href="#windows">Windows</a>, <a href="#mac">OS X and iOS</a>, <a href="#linux">Linux</a> or <a href="#android">Android</a>.
+* Build QtQuickVcp using the <a href="#build_qtquickvcp">platform-independent steps</a>.
+
+<a name="generic_prerequisites"/>
+### Generic Prerequisites
 QtQuickVcp has the following requirements:
 
 * [Qt SDK](http://qt-project.org/downloads) with Qt 5.4.0 or newer
@@ -236,6 +252,172 @@ QtQuickVcp has the following requirements:
 * [Protocol Buffers](https://developers.google.com/protocol-buffers/) - version 2.5.1 or newer
 * [ZeroMQ](http://zeromq.org/) - version 3.x or newer
 
+<a name="windows" />
+### Windows
+**NOTE:** If you want to use Windows in a VirtualBox VM, you may have to enable 3D acceleration for Qt to work properly.
+
+#### Prerequisites
+* Install everything to `C:\bin`
+* Install Microsoft Visual Studio of your choice
+ * [2015 Community Edition](https://www.visualstudio.com/en-us/downloads/download-visual-studio-vs.aspx)
+ * [2013 Express Edition](https://www.microsoft.com/en-us/download/details.aspx?id=44914)
+* Install [Qt SDK](http://www.qt.io/download-open-source/) for Windows (Use the MSVC2015 or MSVC2013 version depending on Visual Studio)
+* Install a Git command line client (VS2015 comes with Git, [Git for Windows](https://git-for-windows.github.io/) is also fine, select add to Windows Path during setup)
+* Create a link from your users directory to `C:\bin`
+ * Run in cmd window as administrator: `mklink /D C:\Users\%USERNAME%\bin C:\bin`
+
+#### ZeroMQ
+Open a cmd window:
+
+    cd C:\bin
+    git clone https://github.com/zeromq/zeromq4-x.git
+    cd zeromq4-x
+    git checkout v4.0.7
+
+Now start Visual Studio and open the solution `C:\zeromq4-x\builds\msvc\msvc11.sln` say yes to migrating the project to the new format.
+
+Wait a few seconds until parsing the header files is finished. Then select the Release build.
+
+Now right click on the libzmq project in the Solutions Explorer and click build.
+
+Now select the x64 build.
+
+Now right click on the `libzmq11` project in the Solutions Explorer and click build.
+
+Copy the `libzmq.dll` and `libzmq.pdb` files from `zeromq4-x\bin\Win32` to the `Qt\<version>\<release>\bin` folder.
+
+Same for `x64`
+
+#### Protobuf
+Open a cmd window:
+
+    cd C:\bin
+    git clone https://github.com/google/protobuf.git
+    cd protobuf
+    git checkout v2.6.1
+
+Now start Visual Studio and open the solution `C:\protobuf\vsprojects\protobuf.sln` say yes to migrating the project to the new format.
+
+Wait a few seconds until parsing the header files is finished. Then select the Release build.
+
+Now right click on the libprotobuf project in the Solutions Explorer and click build. Also see [MSVC2015](#msvc2015)
+
+Repeat this step for libprotobuf-lite, libprotoc and protoc.
+
+Copy the `libprotobuf.lib` files from `protobuf\vsprojects\Release` to the `Qt\<version>\<release>\lib` folder.
+
+Copy the `libprotobuf.pdb` files from `protobuf\vsprojects\Release` to the `Qt\<version>\<release>\bin` folder.
+
+Repeat for `x64` in `protobuf\vsprojects\x64\Release`.
+
+##### MSVC2015
+Even if you have the option to use MSVC2015, use MSVC2013 instead by changing the platform tool set to Visual Studio 2013,
+as you will get this kind of compiler error with MSVC2015:
+````
+error C2338: <hash_*> is deprecated and will be REMOVED. Please use <unordered_*>.  
+You can define _SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS to acknowledge that you have received this warning.
+````
+If MSVC2015 is the only option you have, add  `_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS=1;`  to "Preprocessor Definitions" entry under Project Properties.
+See also [C++ Hash Deprecation Warning](http://stackoverflow.com/q/30430789/4599792)
+
+< name="mac" />
+### Mac - OS X and iOS
+#### Prerequisites
+* Update [OSX to the latest version](http://www.apple.com/osx/how-to-upgrade/) (or you may not be able to deploy to your device)
+* Install [XCode from the App Store](https://itunes.apple.com/us/app/xcode/id497799835)
+* Install [XCode command line tools](http://railsapps.github.io/xcode-command-line-tools.html)
+* Install [MacPorts](http://www.macports.org/install.php)
+* Install [Qt SDK for Mac OSX and iOS](http://www.qt.io/download-open-source/)
+
+Then run
+
+    sudo port selfupdate
+    sudo port install libtool automake m4 autoconf pkgconfig
+
+#### ZeroMQ
+##### OSX
+Install ZeroMQ to `/opt/local`
+
+    git clone https://github.com/zeromq/zeromq4-x.git
+    cd zeromq4-x
+    git checkout v4.0.7
+    sh autogen.sh
+    ./configure --disable-static --enable-shared --prefix=/opt/local CC=clang CXX=clang++ CXXFLAGS="-std=c++11 -stdlib=libstdc++ -O3" LDFLAGS="-stdlib=libstdc++"
+    make
+    sudo make install
+
+##### iOS
+Installs ZeroMQ libraries for iOS to `/opt/zeromq-ios`
+
+    git clone https://github.com/strahlex/libzmq-ios
+    cd libzmq-ios
+    chmod +x libzmq-ios.sh
+    sudo ./libzmq-ios.sh
+
+#### Protobuf
+##### OSX
+Since Yosemite one needs to compile a protobuf library that is compatible with libstdc++.
+
+    git clone https://github.com/google/protobuf.git
+    cd protobuf
+    git checkout v2.6.1
+    sh autogen.sh
+    ./configure --disable-shared --enable-static --prefix=/opt/local CC=clang CXX=clang++ CXXFLAGS="-std=c++11 -stdlib=libstdc++ -O3" LDFLAGS="-stdlib=libstdc++"
+    make
+    sudo make install
+
+##### iOS
+See https://gist.github.com/strahlex/847dc5f320a21f1a9977 installs protobuf to `/opt/protobuf-ios`
+
+    curl    https://gist.githubusercontent.com/strahlex/847dc5f320a21f1a9977/raw/f3baa89c9aa7ff3300d4453b847fc3d786d02ba8/build-protobuf-2.6.1.sh --output build-protobuf-2.6.1.sh
+    chmod +x build-protobuf-2.6.1.sh
+    sudo ./build-protobuf-2.6.1.sh
+
+<a name="linux" />
+### Linux
+The following steps are tested on **Debian Jessie**. For other
+distributions please use the äquivalent packages if available.
+
+**VirtualBox users** see
+[Machinekit Vagrant](https://github.com/strahlex/machinekit-vagrant). Do
+not enable 3D acceleration or OpenGL will not work inside the VM.
+
+#### Prerequisites
+
+    sudo apt-get update
+    sudo apt-get install build-essential gdb dh-autoreconf libgl1-mesa-dev libxslt1.1 git
+
+##### Protobuf and ZeroMQ packages
+
+    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv 43DDF224
+    sudo sh -c \
+    "echo 'deb http://deb.machinekit.io/debian jessie main' > \
+    /etc/apt/sources.list.d/machinekit.list"
+    sudo apt-get update
+    sudo apt-get install pkg-config libprotobuf-dev protobuf-compiler libzmq3-dev
+
+##### Protobuf from source
+
+    git clone https://github.com/google/protobuf.git
+    cd protobuf
+    git checkout v2.6.1
+    ./autogen.sh
+    ./configure
+    make
+    sudo make install
+
+##### ZeroMQ from source
+
+    git clone https://github.com/zeromq/zeromq4-x.git
+    cd zeromq4-x/
+    git checkout v4.0.7
+    ./autogen.sh
+    ./configure     # add other options here
+    make
+    make check
+    sudo make install
+
+<a name="android" />
 ### Android
 Build instruction for Android toolchain on Linux
 #### Prerequisites
@@ -295,179 +477,15 @@ Alter and execute the following commands
     export SYSROOT=$NDK/platform/android-9/arch-arm
     export OUTPUT_DIR=/opt/protobuf-android
 
-    # Latest and greatest, you might prefer 2.5.0 since it is usually installed in your distro
     git clone https://github.com/google/protobuf.git
     cd protobuf
     git checkout v2.6.1
-
     ./autogen.sh
     ./configure --enable-static --disable-shared --host=arm-eabi --with-sysroot=$SYSROOT CC=$CC CXX=$CXX --enable-cross-compile --with-protoc=protoc LIBS="-lc" --prefix=$OUTPUT_DIR
     make
     sudo make install
 
-### Mac - OS X and iOS
-#### Prerequisites
-* Update [OSX to the latest version](http://www.apple.com/osx/how-to-upgrade/) (or you may not be able to deploy to your device)
-* Install [XCode from the App Store](https://itunes.apple.com/us/app/xcode/id497799835)
-* Install [XCode command line tools](http://railsapps.github.io/xcode-command-line-tools.html)
-* Install [MacPorts](http://www.macports.org/install.php)
-* Install [Qt SDK for Mac OSX and iOS](http://www.qt.io/download-open-source/)
-
-Then run
-
-    sudo port selfupdate
-    sudo port install libtool automake m4 autoconf pkgconfig
-
-
-#### ZeroMQ
-##### OSX
-Install ZeroMQ to `/opt/local`
-
-    git clone https://github.com/zeromq/zeromq4-x.git
-    cd zeromq4-x
-    git checkout v4.0.7
-    sh autogen.sh
-    ./configure --disable-static --enable-shared --prefix=/opt/local CC=clang CXX=clang++ CXXFLAGS="-std=c++11 -stdlib=libstdc++ -O3" LDFLAGS="-stdlib=libstdc++"
-    make
-    sudo make install
-
-##### iOS
-Installs ZeroMQ libraries for iOS to `/opt/zeromq-ios`
-
-    git clone https://github.com/strahlex/libzmq-ios
-    cd libzmq-ios
-    chmod +x libzmq-ios.sh
-    sudo ./libzmq-ios.sh
-
-#### Protobuf
-##### OSX
-Since Yosemite one needs to compile a protobuf library that is compatible with libstdc++.
-
-    git clone https://github.com/google/protobuf.git
-    cd protobuf
-    git checkout v2.6.1
-    sh autogen.sh
-    ./configure --disable-shared --enable-static --prefix=/opt/local CC=clang CXX=clang++ CXXFLAGS="-std=c++11 -stdlib=libstdc++ -O3" LDFLAGS="-stdlib=libstdc++"
-    make
-    sudo make install
-
-##### iOS
-See https://gist.github.com/strahlex/847dc5f320a21f1a9977 installs protobuf to `/opt/protobuf-ios`
-
-    curl    https://gist.githubusercontent.com/strahlex/847dc5f320a21f1a9977/raw/f3baa89c9aa7ff3300d4453b847fc3d786d02ba8/build-protobuf-2.6.1.sh --output build-protobuf-2.6.1.sh
-    chmod +x build-protobuf-2.6.1.sh
-    sudo ./build-protobuf-2.6.1.sh
-
-### Linux
-The following steps are tested on **Debian Jessie**. For other
-distributions please use the äquivalent packages if available.
-
-**VirtualBox users** see
-[Machinekit Vagrant](https://github.com/strahlex/machinekit-vagrant). Do
-not enable 3D acceleration or OpenGL will not work inside the VM.
-
-#### Prerequisites
-
-    sudo apt-get update
-    sudo apt-get install build-essential gdb dh-autoreconf libgl1-mesa-dev libxslt1.1 git
-
-##### Protobuf and ZeroMQ packages
-
-    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv 43DDF224
-    sudo sh -c \
-    "echo 'deb http://deb.machinekit.io/debian jessie main' > \
-    /etc/apt/sources.list.d/machinekit.list"
-    sudo apt-get update
-    sudo apt-get install pkg-config libprotobuf-dev protobuf-compiler libzmq3-dev
-
-##### Protobuf from source
-
-    git clone https://github.com/google/protobuf.git
-    cd protobuf
-    git checkout v2.6.1
-    ./autogen.sh
-    ./configure
-    make
-    sudo make install
-
-##### ZeroMQ from source
-
-    git clone https://github.com/zeromq/zeromq4-x.git
-    cd zeromq4-x/
-    git checkout v4.0.7
-    ./autogen.sh
-    ./configure     # add other options here
-    make
-    make check
-    sudo make install
-
-### Windows
-If you want to use Windows in a VirtualBox VM please enable 3D acceleration for Qt to work properly.
-
-#### Prerequisites
-* Install everything to `C:\bin`
-* Install Microsoft Visual Studio of your choice
- * [2015 Community Edition](https://www.visualstudio.com/en-us/downloads/download-visual-studio-vs.aspx)
- * [2013 Express Edition](https://www.microsoft.com/en-us/download/details.aspx?id=44914)
-* Install [Qt SDK](http://www.qt.io/download-open-source/) for Windows (Use the MSVC2015 or MSVC2013 version depending on Visual Studio)
-* Install a Git command line client (VS2015 comes with Git, [Git for Windows](https://git-for-windows.github.io/) is also fine, select add to Windows Path in setup)
-* Create a link from your users directory to `C:\bin`
- * Run in cmd window as administrator: `mklink /D C:\Users\%USERNAME%\bin C:\bin`
-
-#### ZeroMQ
-Open a cmd window:
-
-    cd C:\bin
-    git clone https://github.com/zeromq/zeromq4-x.git
-    cd zeromq4-x
-    git checkout v4.0.7
-
-Now start Visual Studio and open the solution `C:\zeromq4-x\builds\msvc\msvc11.sln` say yes to migrating the project to the new format.
-
-Wait a few seconds until parsing the header files is finished. Then select the Release build.
-
-Now right click on the libzmq project in the Solutions Explorer and click build.
-
-Now select the x64 build.
-
-Now right click on the `libzmq11` project in the Solutions Explorer and click build.
-
-Copy the `libzmq.dll` and `libzmq.pdb` files from `zeromq4-x\bin\Win32` to the `Qt\<version>\<release>\bin` folder.
-
-Same for `x64`
-
-#### Protobuf
-Open a cmd window:
-
-    cd C:\bin
-    git clone https://github.com/google/protobuf.git
-    cd protobuf
-    git checkout v2.6.1
-
-Now start Visual Studio and open the solution `C:\protobuf\vsprojects\protobuf.sln` say yes to migrating the project to the new format.
-
-Wait a few seconds until parsing the header files is finished. Then select the Release build.
-
-Now right click on the libprotobuf project in the Solutions Explorer and click build. Also see [MSVC2015](#msvc2015)
-
-Repeat this step for libprotobuf-lite, libprotoc and protoc.
-
-Copy the `libprotobuf.lib` files from `protobuf\vsprojects\Release` to the `Qt\<version>\<release>\lib` folder.
-
-Copy the `libprotobuf.pdb` files from `protobuf\vsprojects\Release` to the `Qt\<version>\<release>\bin` folder.
-
-Repeat for `x64` in `protobuf\vsprojects\x64\Release`.
-
-##### MSVC2015
-Even if you have the option to use MSVC2015, use MSVC2013 instead by changing the platform tool set to Visual Studio 2013,
-as you will get this kind of compiler error with MSVC2015:
-````
-error C2338: <hash_*> is deprecated and will be REMOVED. Please use <unordered_*>.
-You can define _SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS to acknowledge that you have received this warning.
-````
-If MSVC2015 is the only option you have, add  `_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS=1;`  to "Preprocessor Definitions" entry under Project Properties.
-See also [C++ Hash Deprecation Warning](http://stackoverflow.com/q/30430789/4599792)
-
+<a name="build_qtquickvcp" />
 ### Building QtQuickVcp
 
 After you have all the requirements installed clone and build the [QtQuickVcp repo](https://github.com/strahlex/QtQuickVcp).
