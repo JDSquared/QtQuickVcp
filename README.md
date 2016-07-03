@@ -82,17 +82,22 @@ To enable remote communication you have to set `REMOTE` variable to `1` in the i
 To use mkwrapper and Machinetalk for your existing configurations you have to do 3 modifications.
 
 ##### Modify the INI-file
-Linuxcnc needs to know which user-inferface it should use. For mkwrapper you need to edit following in the *DISPLAY* section:
+Linuxcnc needs to know which user-inferface it should use. For mkwrapper you need to edit following in the `[DISPLAY]` section:
 
-    DISPLAY = mkwrapper
-    INTRO_GRAPHIC =
-    INTRO_TIME = 0
+``` ini
+[DISPLAY]
+DISPLAY = mkwrapper
+INTRO_GRAPHIC =
+INTRO_TIME = 0
+```
 
 ##### Modify the HAL-file
 For some user-interface you need a running Haltalk server. You can add one to you existing configuration by adding following in the beginning of the HAL-file:
 
-    # start haltalk server
-    loadusr -W haltalk
+``` hal
+# start haltalk server
+loadusr -W haltalk
+```
 
 ##### Create a Run-Script
 Machinekit configurations need a few actions to be performed before linuxcnc can start. Take a look at the following script and modify it to fit your configuration. 
@@ -269,10 +274,12 @@ QtQuickVcp has the following requirements:
 #### ZeroMQ
 Open a cmd window:
 
-    cd C:\bin
-    git clone https://github.com/zeromq/zeromq4-x.git
-    cd zeromq4-x
-    git checkout v4.0.7
+``` batch
+cd C:\bin
+git clone https://github.com/zeromq/zeromq4-x.git
+cd zeromq4-x
+git checkout v4.0.7
+```
 
 Now start Visual Studio and open the solution `C:\zeromq4-x\builds\msvc\msvc11.sln` say yes to migrating the project to the new format.
 
@@ -291,10 +298,12 @@ Same for `x64`
 #### Protobuf
 Open a cmd window:
 
-    cd C:\bin
-    git clone https://github.com/google/protobuf.git
-    cd protobuf
-    git checkout v2.6.1
+``` batch
+cd C:\bin
+git clone https://github.com/google/protobuf.git
+cd protobuf
+git checkout v2.6.1
+```
 
 Now start Visual Studio and open the solution `C:\protobuf\vsprojects\protobuf.sln` say yes to migrating the project to the new format.
 
@@ -313,14 +322,15 @@ Repeat for `x64` in `protobuf\vsprojects\x64\Release`.
 ##### MSVC2015
 Even if you have the option to use MSVC2015, use MSVC2013 instead by changing the platform tool set to Visual Studio 2013,
 as you will get this kind of compiler error with MSVC2015:
-````
-error C2338: <hash_*> is deprecated and will be REMOVED. Please use <unordered_*>.  
+
+```
+error C2338: <hash_*> is deprecated and will be REMOVED. Please use <unordered_*>.
 You can define _SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS to acknowledge that you have received this warning.
-````
+```
 If MSVC2015 is the only option you have, add  `_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS=1;`  to "Preprocessor Definitions" entry under Project Properties.
 See also [C++ Hash Deprecation Warning](http://stackoverflow.com/q/30430789/4599792)
 
-< name="mac" />
+<a name="mac" />
 ### Mac - OS X and iOS
 #### Prerequisites
 * Update [OSX to the latest version](http://www.apple.com/osx/how-to-upgrade/) (or you may not be able to deploy to your device)
@@ -331,47 +341,57 @@ See also [C++ Hash Deprecation Warning](http://stackoverflow.com/q/30430789/4599
 
 Then run
 
-    sudo port selfupdate
-    sudo port install libtool automake m4 autoconf pkgconfig
+``` bash
+sudo port selfupdate
+sudo port install libtool automake m4 autoconf pkgconfig
+```
 
 #### ZeroMQ
 ##### OSX
 Install ZeroMQ to `/opt/local`
 
-    git clone https://github.com/zeromq/zeromq4-x.git
-    cd zeromq4-x
-    git checkout v4.0.7
-    sh autogen.sh
-    ./configure --disable-static --enable-shared --prefix=/opt/local CC=clang CXX=clang++ CXXFLAGS="-std=c++11 -stdlib=libstdc++ -O3" LDFLAGS="-stdlib=libstdc++"
-    make
-    sudo make install
+``` bash
+git clone https://github.com/zeromq/zeromq4-x.git
+cd zeromq4-x
+git checkout v4.0.7
+sh autogen.sh
+./configure --disable-static --enable-shared --prefix=/opt/local CC=clang CXX=clang++ CXXFLAGS="-std=c++11 -stdlib=libstdc++ -O3" LDFLAGS="-stdlib=libstdc++"
+make
+sudo make install
+```
 
 ##### iOS
 Installs ZeroMQ libraries for iOS to `/opt/zeromq-ios`
 
-    git clone https://github.com/strahlex/libzmq-ios
-    cd libzmq-ios
-    chmod +x libzmq-ios.sh
-    sudo ./libzmq-ios.sh
+``` bash
+git clone https://github.com/strahlex/libzmq-ios
+cd libzmq-ios
+chmod +x libzmq-ios.sh
+sudo ./libzmq-ios.sh
+```
 
 #### Protobuf
 ##### OSX
 Since Yosemite one needs to compile a protobuf library that is compatible with libstdc++.
 
-    git clone https://github.com/google/protobuf.git
-    cd protobuf
-    git checkout v2.6.1
-    sh autogen.sh
-    ./configure --disable-shared --enable-static --prefix=/opt/local CC=clang CXX=clang++ CXXFLAGS="-std=c++11 -stdlib=libstdc++ -O3" LDFLAGS="-stdlib=libstdc++"
-    make
-    sudo make install
+``` bash
+git clone https://github.com/google/protobuf.git
+cd protobuf
+git checkout v2.6.1
+sh autogen.sh
+./configure --disable-shared --enable-static --prefix=/opt/local CC=clang CXX=clang++ CXXFLAGS="-std=c++11 -stdlib=libstdc++ -O3" LDFLAGS="-stdlib=libstdc++"
+make
+sudo make install
+```
 
 ##### iOS
 See https://gist.github.com/strahlex/847dc5f320a21f1a9977 installs protobuf to `/opt/protobuf-ios`
 
-    curl    https://gist.githubusercontent.com/strahlex/847dc5f320a21f1a9977/raw/f3baa89c9aa7ff3300d4453b847fc3d786d02ba8/build-protobuf-2.6.1.sh --output build-protobuf-2.6.1.sh
-    chmod +x build-protobuf-2.6.1.sh
-    sudo ./build-protobuf-2.6.1.sh
+``` bash
+curl    https://gist.githubusercontent.com/strahlex/847dc5f320a21f1a9977/raw/f3baa89c9aa7ff3300d4453b847fc3d786d02ba8/build-protobuf-2.6.1.sh --output build-protobuf-2.6.1.sh
+chmod +x build-protobuf-2.6.1.sh
+sudo ./build-protobuf-2.6.1.sh
+```
 
 <a name="linux" />
 ### Linux
@@ -384,38 +404,53 @@ not enable 3D acceleration or OpenGL will not work inside the VM.
 
 #### Prerequisites
 
-    sudo apt-get update
-    sudo apt-get install build-essential gdb dh-autoreconf libgl1-mesa-dev libxslt1.1 git
+``` bash
+sudo apt-get update
+sudo apt-get install build-essential gdb dh-autoreconf libgl1-mesa-dev libxslt1.1 git
+```
 
 ##### Protobuf and ZeroMQ packages
 
-    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv 43DDF224
-    sudo sh -c \
-    "echo 'deb http://deb.machinekit.io/debian jessie main' > \
-    /etc/apt/sources.list.d/machinekit.list"
-    sudo apt-get update
-    sudo apt-get install pkg-config libprotobuf-dev protobuf-compiler libzmq3-dev
+``` bash
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv 43DDF224
+sudo sh -c \
+"echo 'deb http://deb.machinekit.io/debian jessie main' > \
+/etc/apt/sources.list.d/machinekit.list"
+sudo apt-get update
+sudo apt-get install pkg-config libprotobuf-dev protobuf-compiler libzmq3-dev
+```
+
+#### Qt packages
+Debian Jessie does not contain Qt packages suitable for QtQuickVcp. Therefore, it is recommended to use either a Qt SDK installation or the packages from the sid repository.
+
+``` bash
+sudo apt install -t sid qt5-default qmlscene qtdeclarative5-dev qtdeclarative5-dev-tools qml-module-qtquick2 qml-module-qtquick-controls qml-module-qt-labs-settings qml-module-qtquick-dialogs qml-module-qtquick-particles2 qml-module-qtquick-xmllistmodel
+```
 
 ##### Protobuf from source
 
-    git clone https://github.com/google/protobuf.git
-    cd protobuf
-    git checkout v2.6.1
-    ./autogen.sh
-    ./configure
-    make
-    sudo make install
+``` bash
+git clone https://github.com/google/protobuf.git
+cd protobuf
+git checkout v2.6.1
+./autogen.sh
+./configure
+make
+sudo make install
+```
 
 ##### ZeroMQ from source
 
-    git clone https://github.com/zeromq/zeromq4-x.git
-    cd zeromq4-x/
-    git checkout v4.0.7
-    ./autogen.sh
-    ./configure     # add other options here
-    make
-    make check
-    sudo make install
+``` bash
+git clone https://github.com/zeromq/zeromq4-x.git
+cd zeromq4-x/
+git checkout v4.0.7
+./autogen.sh
+./configure     # add other options here
+make
+make check
+sudo make install
+```
 
 <a name="android" />
 ### Android
@@ -428,63 +463,72 @@ Build instruction for Android toolchain on Debian Linux
 #### Stand-alone Android toolchain
 First create a Android Stand-alone toolchain:
 
-    sudo ~/bin/android-ndk/build/tools/make-standalone-toolchain.sh --install-dir=/opt/android-toolchain --arch=arm
-    export PATH=/opt/android-toolchain/bin:$PATH
+``` bash
+sudo ~/bin/android-ndk/build/tools/make-standalone-toolchain.sh --install-dir=/opt/android-toolchain --arch=arm
+export PATH=/opt/android-toolchain/bin:$PATH
+```
 
 #### libsodium
 **Not yet necessary. You can skip this step.**
 
-    git clone https://github.com/jedisct1/libsodium.git
-    cd libsodium
-    git checkout v1.0.8
-    sh autogen.sh
-    ./configure --enable-static --disable-shared --prefix=$OUTPUT_DIR
-    make
-    sudo make install
+``` bash
+git clone https://github.com/jedisct1/libsodium.git
+cd libsodium
+git checkout v1.0.8
+sh autogen.sh
+./configure --enable-static --disable-shared --prefix=$OUTPUT_DIR
+make
+sudo make install
+```
 
 #### ZeroMQ
 Alter and execute the following commands
 
-    mkdir tmp
-    cd tmp/
+``` bash
+mkdir tmp
+cd tmp/
 
-    export OUTPUT_DIR=/opt/zeromq-android
-    export RANLIB=/opt/android-toolchain/bin/arm-linux-androideabi-ranlib
+export OUTPUT_DIR=/opt/zeromq-android
+export RANLIB=/opt/android-toolchain/bin/arm-linux-androideabi-ranlib
 
-    git clone https://github.com/zeromq/zeromq4-x.git
-    cd zeromq4-x/
-    git checkout v4.0.7
+git clone https://github.com/zeromq/zeromq4-x.git
+cd zeromq4-x/
+git checkout v4.0.7
 
-    # fix compile problems
-    mv tools/curve_keygen.c tools/curve_keygen.cpp
-    sed -i 's/\.c\>/&pp/' tools/Makefile.am
-    rm -f tools/.deps/curve_keygen.Po
+# fix compile problems
+mv tools/curve_keygen.c tools/curve_keygen.cpp
+sed -i 's/\.c\>/&pp/' tools/Makefile.am
+rm -f tools/.deps/curve_keygen.Po
 
-    ./autogen.sh
-    ./configure --enable-static --disable-shared --host=arm-linux-androideabi --prefix=$OUTPUT_DIR \
-    LDFLAGS="-L$OUTPUT_DIR/lib" CPPFLAGS="-fPIC -I$OUTPUT_DIR/include" LIBS="-lgcc"
-    make
-    sudo make install
+./autogen.sh
+./configure --enable-static --disable-shared --host=arm-linux-androideabi --prefix=$OUTPUT_DIR \
+LDFLAGS="-L$OUTPUT_DIR/lib" CPPFLAGS="-fPIC -I$OUTPUT_DIR/include" LIBS="-lgcc"
+make
+sudo make install
 
-    cd ..
+cd ..
+```
 
 #### Protobuf
 
-    export PATH=/opt/android-toolchain/bin:$PATH
-    export CFLAGS="-fPIC -DANDROID -nostdlib"
-    export CC=arm-linux-androideabi-gcc
-    export CXX=arm-linux-androideabi-g++
-    export NDK=~/bin/android-ndk
-    export SYSROOT=$NDK/platform/android-9/arch-arm
-    export OUTPUT_DIR=/opt/protobuf-android
+``` bash
+export PATH=/opt/android-toolchain/bin:$PATH
+export CFLAGS="-fPIC -DANDROID -nostdlib"
+export CC=arm-linux-androideabi-gcc
+export CXX=arm-linux-androideabi-g++
+export NDK=~/bin/android-ndk
+export SYSROOT=$NDK/platform/android-9/arch-arm
+export OUTPUT_DIR=/opt/protobuf-android
 
-    git clone https://github.com/google/protobuf.git
-    cd protobuf
-    git checkout v2.6.1
-    ./autogen.sh
-    ./configure --enable-static --disable-shared --host=arm-eabi --with-sysroot=$SYSROOT CC=$CC CXX=$CXX --enable-cross-compile --with-protoc=protoc LIBS="-lc" --prefix=$OUTPUT_DIR
-    make
-    sudo make install
+git clone https://github.com/google/protobuf.git
+cd protobuf
+git checkout v2.6.1
+
+./autogen.sh
+./configure --enable-static --disable-shared --host=arm-eabi --with-sysroot=$SYSROOT CC=$CC CXX=$CXX --enable-cross-compile --with-protoc=protoc LIBS="-lc" --prefix=$OUTPUT_DIR
+make
+sudo make install
+```
 
 <a name="build_qtquickvcp" />
 ### Building QtQuickVcp
