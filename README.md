@@ -419,10 +419,11 @@ not enable 3D acceleration or OpenGL will not work inside the VM.
 
 <a name="android" />
 ### Android
-Build instruction for Android toolchain on Linux
+Build instruction for Android toolchain on Debian Linux
 #### Prerequisites
 * Install [Qt SDK for Android](http://www.qt.io/download-open-source/)
 * Download and extract [Android NDK](http://developer.android.com/ndk/downloads/index.html) and [Android SDK](http://developer.android.com/sdk/index.html#Other) to `~/bin`
+* Automake and libtool: `sudo apt-get install automake libtool-bin`
 
 #### Stand-alone Android toolchain
 First create a Android Stand-alone toolchain:
