@@ -208,7 +208,7 @@ If you have a embedded Machinekit setup e.g. on the BeagleBone Black, it is reco
 ## Contributing
 
 ### Work flow
-* Create an issue in the issue tracker (e.g. Fan control missing)
+* Create an issue in the [issue tracker](https://github.com/strahlex/QtQuickVcp/issues) (e.g. Fan control missing)
 * Fork the git repository.
 * After you have coded some cool new stuff please create a pull request and link it to the issue.
 
