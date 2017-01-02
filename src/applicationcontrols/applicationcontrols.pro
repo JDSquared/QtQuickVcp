@@ -4,6 +4,8 @@ QT += qml quick
 uri = Machinekit.Application.Controls
 include(../plugin.pri)
 
+CONFIG(qtquickcompiler): include(../qtquickcompiler.pri)
+
 # Input
 SOURCES += \
     plugin.cpp

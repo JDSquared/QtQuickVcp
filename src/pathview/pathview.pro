@@ -9,6 +9,8 @@ include(../../3rdparty/machinetalk-protobuf-qt/machinetalk-protobuf-lib.pri)
 include(../common/common.pri)
 include(../machinetalk/machinetalk.pri)
 
+CONFIG(qtquickcompiler): include(../qtquickcompiler.pri)
+
 # Input
 SOURCES += \
     plugin.cpp \

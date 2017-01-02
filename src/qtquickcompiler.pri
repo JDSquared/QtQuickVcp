@@ -1,0 +1,3 @@
+INCLUDEPATH += $$[QT_INSTALL_PREFIX]\include\QtQml\5.7.0\QtQml
+INCLUDEPATH += $$[QT_INSTALL_PREFIX]\include\QtCore\5.7.0
+INCLUDEPATH += $$[QT_INSTALL_PREFIX]\include\QtCore\5.7.0\QtCore

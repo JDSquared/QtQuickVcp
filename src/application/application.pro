@@ -11,6 +11,8 @@ include(../../3rdparty/qftp/qftp.pri)
 include(../common/common.pri)
 include(../machinetalk/machinetalk.pri)
 
+CONFIG(qtquickcompiler): include(../qtquickcompiler.pri)
+
 # Input
 SOURCES += \
     plugin.cpp \
