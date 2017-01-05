@@ -52,8 +52,14 @@ win32: QMAKE_DEL_FILE = del /q /f
 QMAKE_CLEAN += $$OUT_PWD/../../imports/$$TARGETPATH/
 
 # ========== install additional files ==========
-isEmpty(QMLPLUGINDUMP): QMLPLUGINDUMP = 1
-equals(QMLPLUGINDUMP, 1): !ios: !android: release: {
+CONFIG(debug, debug|release) {
+    QMLPLUGINDUMP = 0
+}
+else {
+    isEmpty(QMLPLUGINDUMP): QMLPLUGINDUMP = 1
+}
+
+equals(QMLPLUGINDUMP, 1): !ios: !android: {
     dumppluginqmltypes.CONFIG = no_files no_path
     !win32: dumppluginqmltypes.commands = $$dirname(QMAKE_QMAKE)/qmlplugindump -nonrelocatable "$$uri $$PLUGIN_VERSION $$shell_path($$OUT_PWD/../../imports/) > $$shell_path($$OUT_PWD/../../imports/$$TARGETPATH/plugins.qmltypes)"
     win32: dumppluginqmltypes.commands = $$dirname(QMAKE_QMAKE)/qmlplugindump -nonrelocatable "$$uri $$PLUGIN_VERSION $$shell_path($$OUT_PWD/../../imports/) > $$shell_path($$OUT_PWD/../../imports/$$TARGETPATH/plugins.qmltypes)" && $$QMAKE_COPY $$shell_path($$OUT_PWD/../../imports/$$TARGETPATH/plugins.qmltypes) $$shell_path($$[QT_INSTALL_QML]/$$TARGETPATH/plugins.qmltypes)

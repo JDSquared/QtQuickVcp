@@ -6,7 +6,12 @@ include(../3rdparty/nzmqt/nzmqt.pri)
 !isEmpty(ZEROMQ_LIB_FLAGS): LIBS += $$ZEROMQ_LIB_FLAGS
 
 !win32: LIBS += -lzmq
-win32:  LIBS += -llibzmq
+win32: CONFIG(debug, debug|release) {
+    LIBS += -llibzmq_d
+}
+else {
+    LIBS += -llibzmq
+}
 
 ios: {
     LIBS += -L$$LIBSODIUM_LIB_PATH

@@ -32,15 +32,29 @@ macx: {
 win32-msvc2013 | win32-msvc2015 {
     PROTOBUF_INCLUDE_PATH = $$(HOMEDRIVE)$$(HOMEPATH)\bin\protobuf\src
     ZEROMQ_INCLUDE_PATH = $$(HOMEDRIVE)$$(HOMEPATH)\bin\zeromq4-x\include
-    contains(QMAKE_TARGET.arch, x86_64) {
-        ZEROMQ_LIB_PATH = $$(HOMEDRIVE)$$(HOMEPATH)\bin\zeromq4-x\lib\x64
-        PROTOBUF_LIB_PATH = $$(HOMEDRIVE)$$(HOMEPATH)\bin\protobuf\vsprojects\x64\Release
-        PROTOBUF_PROTOC = $$(HOMEDRIVE)$$(HOMEPATH)\bin\protobuf\vsprojects\x64\Release\protoc.exe
+    CONFIG(debug, debug|release) {
+        contains(QMAKE_TARGET.arch, x86_64) {
+            ZEROMQ_LIB_PATH = $$(HOMEDRIVE)$$(HOMEPATH)\bin\zeromq4-x\lib\x64
+            PROTOBUF_LIB_PATH = $$(HOMEDRIVE)$$(HOMEPATH)\bin\protobuf\vsprojects\x64\Debug
+            PROTOBUF_PROTOC = $$(HOMEDRIVE)$$(HOMEPATH)\bin\protobuf\vsprojects\x64\Debug\protoc.exe
+        }
+        else {
+            ZEROMQ_LIB_PATH = $$(HOMEDRIVE)$$(HOMEPATH)\bin\zeromq4-x\lib\Win32
+            PROTOBUF_LIB_PATH = $$(HOMEDRIVE)$$(HOMEPATH)\bin\protobuf\vsprojects\Debug
+            PROTOBUF_PROTOC = $$(HOMEDRIVE)$$(HOMEPATH)\bin\protobuf\vsprojects\Debug\protoc.exe
+        }
     }
     else {
-        ZEROMQ_LIB_PATH = $$(HOMEDRIVE)$$(HOMEPATH)\bin\zeromq4-x\lib\Win32
-        PROTOBUF_LIB_PATH = $$(HOMEDRIVE)$$(HOMEPATH)\bin\protobuf\vsprojects\Release
-        PROTOBUF_PROTOC = $$(HOMEDRIVE)$$(HOMEPATH)\bin\protobuf\vsprojects\Release\protoc.exe
+        contains(QMAKE_TARGET.arch, x86_64) {
+            ZEROMQ_LIB_PATH = $$(HOMEDRIVE)$$(HOMEPATH)\bin\zeromq4-x\lib\x64
+            PROTOBUF_LIB_PATH = $$(HOMEDRIVE)$$(HOMEPATH)\bin\protobuf\vsprojects\x64\Release
+            PROTOBUF_PROTOC = $$(HOMEDRIVE)$$(HOMEPATH)\bin\protobuf\vsprojects\x64\Release\protoc.exe
+        }
+        else {
+            ZEROMQ_LIB_PATH = $$(HOMEDRIVE)$$(HOMEPATH)\bin\zeromq4-x\lib\Win32
+            PROTOBUF_LIB_PATH = $$(HOMEDRIVE)$$(HOMEPATH)\bin\protobuf\vsprojects\Release
+            PROTOBUF_PROTOC = $$(HOMEDRIVE)$$(HOMEPATH)\bin\protobuf\vsprojects\Release\protoc.exe
+        }
     }
 }
 win32-g++ {

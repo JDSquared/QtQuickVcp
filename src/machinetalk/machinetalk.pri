@@ -4,11 +4,14 @@ INCLUDEPATH += $$PWD
 !win32 {
     LIBS += -L$$MACHINETALK_PATH
 } else {
-    LIBS += -L$$MACHINETALK_PATH/release
-    LIBS += -L$$MACHINETALK_PATH/debug
+    CONFIG(debug, debug|release) {
+        LIBS += -L$$MACHINETALK_PATH/debug
+    }
+    else {
+        LIBS += -L$$MACHINETALK_PATH/release
+    }
 }
 #macx: {
 #    LIBS += -Bstatic
 #}
-LIBS += -Bstatic
 LIBS += -lmachinetalk

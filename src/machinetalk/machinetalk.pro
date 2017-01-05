@@ -9,7 +9,6 @@ QT       -= gui
 CONFIG -= android_install
 CONFIG += static
 
-
 TARGET = machinetalk
 TEMPLATE = lib
 
