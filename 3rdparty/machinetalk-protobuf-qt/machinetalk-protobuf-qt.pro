@@ -1,7 +1,5 @@
 QT     -= core gui
 CONFIG -= android_install
-#CONFIG += release
-CONFIG += debug
 
 macx | win32: {
     CONFIG += static
